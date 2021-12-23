@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-3.5.0.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+    <style type="text/css">
+        .text-indent-2 {
+            text-indent: 2em;
+        }
+
+        .text-indent-4 {
+            text-indent: 4em;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <input type="hidden" id="houseId" th:value="${#ctx.session.house.houseId}">
+    <input type="hidden" id="userId" th:value="${#ctx.session.user.id}">
+    <h1 class="w-100 text-center mb-4 mt-4 pt-4 pb-4">房屋租赁合同</h1>
+    <p>出租方：<span th:text="${#ctx.session.house_user.name}">张三</span>（以下简称甲方）；</p>
+    <br>
+    <p>承租方：<span th:text="${#ctx.session.user.name}">可爱精灵890</span>（以下简称乙方）。</p>
+    <br>
+    <p>租赁房屋地址：<span th:text="${#ctx.session.house.houseAddress}">菊花园1-364</span></p>
+    <br>
+    <p>依据《中华人民共和国合同法》有关条款，甲乙双方经过充分协商，就乙方租赁甲方房屋事宜达成如下协议：</p>
+    <p class="text-indent-2">一、乙方租赁甲方房屋，以下简称租赁房屋。</p>
+    <p class="text-indent-2">二、在合同签订之日，乙方需向甲方支付房屋租金￥<span id="housePrice" th:text="${#ctx.session.house.housePrice}">1300.0</span>元/月。如续租，请提前3天通知甲方，并重新办理租赁手续。
+    </p>
+    <p class="text-indent-2">三、违约处理：</p>
+    <p class="text-indent-4">甲方违约：</p>
+    <p class="text-indent-4">1．如甲方未能及时将押金退还乙方，甲方每天应按押金的2％向乙方支付违约金；</p>
+    <p class="text-indent-4">2．如甲方提供的维修服务项目与协议不相符，乙方有权提前退租，甲方应全额退还剩余的租金。</p>
+    <p class="text-indent-4">乙方违约：</p>
+    <p class="text-indent-4">1．如乙方不按时缴纳租金，甲方有权在其押金中扣除，同时收回房屋，所有损失由乙方负责；</p>
+    <p class="text-indent-4">2．如果乙方在租赁期限未满时退租，甲方仅退还剩余租金的40％（租期未满一个月的不在此例）；</p>
+    <p class="text-indent-2">四、本协议书一式两份，甲乙双方各执一份；本协议甲乙双方签字后生效。补充协议亦属于合同的一部分。</p>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col">
+            甲方（盖章）：_________<br>
+            法定代表人（签字）：_________<br>
+            担保人（签章）：_________<br>
+            _________年____月____日<br>
+            签订地点：_________<br>
+        </div>
+        <div class="col">
+            乙方（盖章）：_________<br>
+            法定代表人（签字）：_________<br>
+            <br>
+            _________年____月____日<br>
+            签订地点：_________<br>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="d-flex flex-row-reverse">
+        <a th:href="@{'/house/housePage/'+${#ctx.session.house.houseId}}" class="btn btn-dark">取消</a>
+        <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#exampleModal">确定</button>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">支付</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="error" class="alert alert-danger d-none">
+                        <strong>错误!</strong> 金额不足
+                    </div>
+                    <input type="text" class="form-control" id="price">
+                    <img src="http://182.92.196.229/images/ewm.png" alt="" class="w-100">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <a id="commit" class="btn btn-primary">确定</a>
+                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        var commitBtn = $('#commit');
+                        var priceInput = $('#price');
+                        var houseId = $('#houseId').val();
+                        var userId = $('#userId').val();
+                        commitBtn.click(function () {
+                            var price = priceInput.val();
+                            console.log(price);
+                            console.log($('#housePrice').text());
+                            if (price === $('#housePrice').text()) {
+                                commitBtn.attr("href", "/user/rentHouse?houseId=" + houseId + "&userId=" + userId)
+                            }else {
+                                $('#error').removeClass('d-none')
+                            }
+                        });
+                    })
+
+                </script>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+</div>
+
+</body>
+
+</html>

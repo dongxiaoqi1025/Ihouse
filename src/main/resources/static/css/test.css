@@ -1,0 +1,138 @@
+.sellListContent li .info .title {
+  font-weight: 700;
+  color: #101d37;
+  height: 22px;
+  overflow: hidden;
+}
+
+.sellListContent li .info .title a {
+  float: left;
+  max-width: 400px;
+  text-decoration: none;
+  font-size: 22px;
+  color: #101d37;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sellListContent li .info .address {
+  margin-top: 20px;
+}
+
+
+.sellListContent li .info .address .positionInfo a {
+  color: #101d37;
+}
+
+.sellListContent li .info .address .houseInfo {
+  width: 400px;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  vertical-align: top;
+  margin-top: 18px;
+}
+
+
+
+.sellListContent li .info .followInfo {
+  margin-top: 18px;
+}
+
+.sellListContent li .info .positionInfo .positionIcon,
+.sellListContent li .info .address .houseInfo .houseIcon,
+.sellListContent li .info .followInfo .starIcon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 12px;
+}
+
+.sellListContent li .info .tag {
+  margin-top: 18px;
+}
+
+.sellListContent li .info .tag .taxfree {
+  color: #849aae;
+  background: #f4f7f9;
+}
+
+.sellListContent li .info .tag span {
+  color: #849aae;
+  font-size: 12px;
+  line-height: 30px;
+  padding: 0 11px;
+  margin-right: 6px;
+  background-color: #f4f7f9;
+  float: left;
+}
+
+.sellListContent li .info .priceInfo {
+  position: absolute;
+  right: 0;
+  top: 30%;
+}
+
+.sellListContent li .info .priceInfo .totalPrice {
+  text-align: right;
+  width: 130px;
+  font-size: 14px;
+  color: #db4c3f;
+}
+
+.sellListContent li .info .priceInfo .totalPrice span {
+  font-weight: 700;
+  font-size: 26px;
+  font-family: tahoma;
+  margin-right: 5px;
+}
+
+.sellListContent li .info .priceInfo .unitPrice {
+  text-align: right;
+  margin-top: 18px;
+  width: 130px;
+  font-size: 12px;
+  color: #101d37;
+  position: relative;
+}
+
+.sellListContent li .listButtonContainer {
+  *zoom: 1;
+  display: none;
+  position: absolute;
+  top: 6px;
+  right: 0;
+}
+
+.sellListContent li .followBtn {
+  float: right;
+  line-height: 24.5px;
+  padding: 0 7.5px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  color: #a9abab;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 12px;
+}
+
+.resultDes {
+  line-height: 55px;
+}
+
+.resultDes .total {
+  font-weight: 700;
+  font-size: 22px;
+  color: #101d37;
+}
+
+.resultDes .total span {
+  color: #3072f6;
+  font-family: tahoma;
+}
+
+.resultDes .total a {
+  color: #101d37;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/ihouse.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-3.5.0.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+    <!--图标库-->
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css">
+
+    <title>交租记录</title>
+</head>
+
+<body style="min-width: 1200px;">
+<div th:replace="commons/common::header"></div>
+
+<div class="clearfix">
+    <div class="float-left" style="background-color: #ef584a; min-height: 600px;">
+        <div th:replace="commons/common::sidebar(activeUri='rented')"></div>
+    </div>
+
+    <div class="float-left">
+        <div style="width: 950px;">
+
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">我的租房</a></li>
+                <li class="breadcrumb-item active" aria-current="page">租房历史</li>
+            </ol>
+            <div style="padding: 0px 20px;">
+
+                <div th:if="${rents==null}">
+                    暂无数据
+                </div>
+                <div th:if="${rents!=null}" class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">地址</th>
+                            <th scope="col">价格</th>
+                            <th scope="col">起租日</th>
+                            <th scope="col">退租日</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="rent,rentStat:${rents}">
+                            <th scope="row" th:text="${rentStat.index+1}"></th>
+                            <td><a th:text="${rent.getHouseName()}" th:href="@{'/house/housePage/'+${rent.getHouseId()}}"></a></td>
+                            <td th:text="${rent.getPrice()}"></td>
+                            <td th:text="${rent.getCreated()}"></td>
+                            <td th:text="${rent.getDeadline()}"></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 底部页脚部分 -->
+<div class="footer">
+    <p class="text-center">
+        2018 &copy; 李富宝.
+    </p>
+</div>
+</body>
+
+
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>房屋详情</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/ihouse.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-3.5.0.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+</head>
+
+<body>
+<!-- 通用头部 -->
+<div th:replace="commons/common::header"></div>
+<!-- 头部部分 -->
+<div class="w-100 bg-gray">
+    <div class="container">
+        <div class="row pt-4">
+            <div class="col-12 col-sm-2 col-md-2 col-lg-2">
+                <a class="logo" href="/" aria-label="Bootstrap">
+                    <div style="margin-top: -5px; float: left;">
+                        <svg t="1587818161163" class="m-auto" role="img"
+                             viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2333"
+                             width="32"
+                             height="32" focusable="false">
+                            <path
+                                    d="M875.989333 576a21.333333 21.333333 0 0 0-21.333333 21.333333v384h-213.333333V682.666667h-256v298.666666h-213.333334V576a21.333333 21.333333 0 1 0-42.666666 0v448h298.666666V725.333333h170.666667v298.666667h298.666667V597.333333a21.333333 21.333333 0 0 0-21.333334-21.333333z"
+                                    fill="#ffffff" p-id="2334"></path>
+                            <path
+                                    d="M1019.072 539.584l-490.666667-490.666667a21.312 21.312 0 0 0-30.165333 0l-490.666667 490.666667a21.312 21.312 0 1 0 30.165334 30.165333L513.322667 94.165333l475.584 475.584a21.269333 21.269333 0 0 0 30.165333 0 21.312 21.312 0 0 0 0-30.165333zM683.989333 128h128v128a21.333333 21.333333 0 1 0 42.666667 0V85.333333h-170.666667a21.333333 21.333333 0 1 0 0 42.666667z"
+                                    fill="#ffffff" p-id="2335"></path>
+                        </svg>
+                    </div>
+                    爱居
+                </a>
+            </div>
+            <div class="col-12 col-sm-10 col-md-8 col-lg-4 ml-sm-auto">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="请输入区域、商圈或小区名开始找房"
+                           aria-label="Recipient's username"
+                           aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-search" type="button" id="button-addon2">搜索</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-4 pb-4">
+            <div class="col-12 col-md-6">
+                <h4>
+                    <span th:text="${house.getMode()}">整租</span>·<span th:text="${house.getAddress()}">清心雅苑东区</span>
+                    <span th:text="${house.getType()}">一居室</span>
+                    <span th:text="${house.getOrientation()}">南</span>
+                </h4>
+
+            </div>
+            <div class="col-12 col-md-6">
+                <a href="//www.ke.com/city/" class="exchange2 float-right">
+                    <svg t="1587993721714" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                         xmlns="http://www.w3.org/2000/svg"
+                         p-id="2217" width="16" height="16">
+                        <path
+                                d="M1004.125 382.534c-4.282-13.103-17.943-36.003-61.58-42.357l-173.66-25.227c-42.683-6.214-94.93-44.149-114.06-82.874l-77.661-157.37c-19.526-39.564-45.522-45.475-59.3-45.475s-39.772 5.91-59.298 45.474l-77.685 157.37c-19.106 38.703-71.33 76.661-114.036 82.875L93.184 340.177c-43.66 6.33-57.32 29.254-61.58 42.357-4.235 13.102-6.679 39.657 24.925 70.446l125.673 122.485c30.906 30.138 50.851 91.531 43.543 134.074l-29.649 172.963c-5.748 33.466 3.514 52.922 12.311 63.371 17.874 21.179 49.897 24.088 83.642 6.377l155.3-81.664c36.258-19.014 104.773-19.037 141.032 0l155.346 81.664c14.987 7.866 29.277 11.87 42.519 11.87 16.547 0 31.139-6.47 41.076-18.247 8.797-10.426 18.06-29.905 12.335-63.348l-29.65-172.986c-7.284-42.52 12.637-103.913 43.544-134.051l125.672-122.484c31.581-30.813 29.138-57.368 24.902-70.47z"
+                                fill="#FF9C00" p-id="2218"></path>
+                    </svg>
+                    收藏
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 主题内容 -->
+<div class="container clearfix mb-3">
+    <div class="row">
+        <script type="text/javascript">
+            $(function () {
+                setClass(0);
+            });
+
+            function setClass(index) {
+                var imageId = '#image' + index;
+                var smallImageId = '#smallImage' + index;
+
+                $('.imgContainer div').each(function () {
+                    $(this).addClass("d-none");
+                });
+
+                $('.thumbnail ul li.active').removeClass("active");
+                $(imageId).removeClass("d-none");
+                $(smallImageId).addClass("active");
+            }
+            var index=0;
+            $('#pre').click(function () {
+
+            });
+
+            function liClick(index) {
+                setClass(index);
+            }
+        </script>
+        <!-- 左侧图片 -->
+        <div class="col-lg img clearfix mt-3">
+            <div class="imgContainer">
+                <div th:each="image,imageStat:${house.images}" th:id="'image'+${imageStat.index}" class="d-none">
+                    <img th:src="${image}" class="d-block w-100">
+                </div>
+
+            </div>
+            <div class="thumbnail">
+                <div id="pre" class="pre">&lt;</div>
+                <ul class="smallpic">
+                    <li th:each="image,imageStat:${house.images}" th:id="'smallImage'+${imageStat.index}"
+                        th:onclick="'liClick('+${imageStat.index}+')'">
+                        <img th:src="${image}" class="w-100">
+                    </li>
+                </ul>
+                <div id="next" class="next">&gt;</div>
+            </div>
+        </div>
+
+        <!-- 右侧信息 -->
+        <div class="col-lg autoContent clearfix mt-3">
+            <div class="content clearfix">
+                <div class="price">
+                    <span class="total" th:text="${house.getPrice()}">4280</span>
+                    <span class="unit">
+              <span>元/月</span>
+            </span>
+                    <div class="features">
+                        <i th:each="feature:${house.getFeatures()}" th:text="${feature}">杀杀杀</i>
+                    </div>
+                </div>
+                <div class="houseInfo clearfix">
+                    <div class="houseInfoItem w-25">
+                        <div class="mainInfo" th:text="${house.type}">3室2厅</div>
+                    </div>
+                    <div class="houseInfoItem w-25">
+                        <div class="mainInfo" th:text="${house.orientation}">南北</div>
+                    </div>
+                    <div class="houseInfoItem w-50">
+                        <div class="mainInfo">145.48平米</div>
+                    </div>
+                </div>
+                <div class="aroundInfo">
+                    <div class="aroundInfoItem">
+                        <span class="label">租赁方式:</span>
+                        <span class="info" th:text="${house.mode}">合租</span>
+                    </div>
+                    <div class="aroundInfoItem">
+                        <span class="label">所在区域:</span>
+                        <span class="info" th:text="${house.district}">尖草坪区</span>
+                        <span class="info" th:text="${house.address}">xxx小区xx栋xx单元xx号</span>
+                    </div>
+                    <div class="aroundInfoItem">
+                        <span class="label">租赁周期:</span>
+                        <span class="info" th:text="${house.time}">一个月</span>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <div class="float-left" style="line-height: 36px;text-align: center;">联系方式：<span th:text="${host.userPhone}"></span></div>
+                    <a th:href="@{'/user/contract?houseId='+${house.houseId}}" class="btn btn-primary float-left ml-3">我要租房</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<div th:replace="commons/common::footer"></div>
+</body>
+
+</html>

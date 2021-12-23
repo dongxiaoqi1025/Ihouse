@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--header-->
+<header th:fragment="header" class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+    <div class="navbar-brand mr-0 mr-md-2 clearfix">
+        <a class="logo" href="/" aria-label="Bootstrap">
+            <div style="margin-top: -5px; float: left;">
+                <svg t="1587818161163" class="m-auto" role="img"
+                     viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2333" width="32"
+                     height="32"
+                     focusable="false">
+                    <path
+                            d="M875.989333 576a21.333333 21.333333 0 0 0-21.333333 21.333333v384h-213.333333V682.666667h-256v298.666666h-213.333334V576a21.333333 21.333333 0 1 0-42.666666 0v448h298.666666V725.333333h170.666667v298.666667h298.666667V597.333333a21.333333 21.333333 0 0 0-21.333334-21.333333z"
+                            fill="#ffffff" p-id="2334"></path>
+                    <path
+                            d="M1019.072 539.584l-490.666667-490.666667a21.312 21.312 0 0 0-30.165333 0l-490.666667 490.666667a21.312 21.312 0 1 0 30.165334 30.165333L513.322667 94.165333l475.584 475.584a21.269333 21.269333 0 0 0 30.165333 0 21.312 21.312 0 0 0 0-30.165333zM683.989333 128h128v128a21.333333 21.333333 0 1 0 42.666667 0V85.333333h-170.666667a21.333333 21.333333 0 1 0 0 42.666667z"
+                            fill="#ffffff" p-id="2335"></path>
+                </svg>
+            </div>
+            爱居
+        </a>
+        <a href="//www.ke.com/city/" class="exchange">
+            <svg t="1587819024696" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 p-id="3479" width="16" height="16">
+                <path d="M511.5 512c-72.8 0-130-57.2-130-130s57.2-130 130-130 130 57.2 130 130-57.2 130-130 130z m0.5-448c-174.7 0-313.5 138.9-313.5 313.6C198.5 610.6 512 960 512 960s313.5-349.4 313.5-582.4C825.5 202.9 686.7 64 512 64z"
+                      fill="#ffffff" p-id="3480"></path>
+            </svg>
+            <span th:text="${#ctx.session.get('city')}"></span>
+        </a>
+    </div>
+
+    <div class="navbar-nav-scroll">
+        <ul class="navbar-nav bd-navbar-nav flex-row">
+            <li class="nav-item">
+                <a th:class="${activeUri=='main'?'nav-link active':'nav-link'}" th:href="@{/index}">首页</a>
+            </li>
+            <li class="nav-item">
+                <a th:class="${activeUri=='mode2'?'nav-link active':'nav-link'}" th:href="@{/house/search/m2}">合租</a>
+            </li>
+            <li class="nav-item">
+                <a th:class="${activeUri=='mode1'?'nav-link active':'nav-link'}" th:href="@{/house/search/m1}">整租</a>
+            </li>
+            <li class="nav-item">
+                <a th:class="${activeUri=='publish'?'nav-link active':'nav-link'}"
+                   th:href="@{/user/publishPage}">发布房源</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="navbar-nav ml-md-auto">
+        <svg t="1587828578951" class="icon mr-2" viewBox="0 0 1025 1024" version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             p-id="4363" width="32" height="32">
+            <path d="M582.352706 568.885667c-3.173009-1.033003-23.208068-10.067029-10.688031-48.126141l-0.173001 0c32.628096-33.602098 57.568169-87.703257 57.568169-140.945413 0-81.88124-54.45416-124.788366-117.727345-124.788366-63.311185 0-117.455344 42.908126-117.455344 124.788366 0 53.458157 24.803073 107.775316 57.627169 141.295414 12.792037 33.563098-10.08603 46.021135-14.873044 47.77614-66.271194 23.96307-144.009422 67.648198-144.009422 110.771325l0 16.157047c0 58.755172 113.910334 72.111211 219.332643 72.111211 105.578309 0 218.047639-13.356039 218.047639-72.111211l0-16.157047C730.001139 635.229861 651.87491 591.897734 582.352706 568.885667L582.352706 568.885667zM582.352706 568.885667"
+                  p-id="4364" fill="#ffffff"></path>
+            <path d="M511.308498 958.895809c-246.714723 0-447.417311-200.702588-447.417311-447.423311 0-246.714723 200.702588-447.417311 447.417311-447.417311 246.721723 0 447.423311 200.702588 447.423311 447.417311C958.731809 758.194221 758.029221 958.895809 511.308498 958.895809L511.308498 958.895809zM511.308498 128.259376c-211.307619 0-383.213123 171.905504-383.213123 383.213123 0 211.279619 171.905504 383.219123 383.213123 383.219123 211.279619 0 383.219123-171.939504 383.219123-383.219123C894.527621 300.165879 722.588117 128.259376 511.308498 128.259376L511.308498 128.259376zM511.308498 128.259376"
+                  p-id="4365" fill="#ffffff"></path>
+        </svg>
+        <div th:if="${session.get('user') ne null}">
+            <a href="/user/center" class="mr-2 text-light" th:text="${session.get('user').name}">152****2314</a>
+            <a href="/user/logout" class="text-light">退出</a>
+        </div>
+        <div th:if="${session.get('user') eq null}">
+            <a th:href="@{/loginPage}" class="mr-2 text-light">登录</a>
+            <a th:href="@{/registerPage}" class="text-light">注册</a>
+        </div>
+    </div>
+</header>
+
+
+<!--footer-->
+<div th:fragment="footer" class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h2>个人信息</h2>
+                <p>电话：15234512314</p>
+            </div>
+            <div class="col text-center">
+                <h2>所属院校</h2>
+                <p>中北大学</p>
+            </div>
+            <div class="col text-center">
+                <h2>个人作品</h2>
+                <p>中北大学</p>
+            </div>
+        </div>
+        <hr/>
+        <div class="row pb-2">
+            <div class="col text-center">
+                中北大学 2020 毕业设计
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--sidebar-->
+<ui th:fragment="sidebar" class="mainMenu">
+    <li class="item" id="rent">
+        <a href="#rent" class="btn2"><i class="fas fa-home"></i>我的租房</a>
+        <div class="subMenu">
+            <a th:class="${activeUri=='renting'?'active':''}" th:href="@{/user/center/renting}">当前租房</a>
+            <a th:class="${activeUri=='rented'?'active':''}" th:href="@{/user/center/rented}">租房历史</a>
+        </div>
+    </li>
+    <li class="item" id="house">
+        <a href="#house" class="btn2"><i class="fas fa-address-card"></i>房源管理</a>
+        <div class="subMenu">
+            <a th:class="${activeUri=='myHouse'?'active':''}" th:href="@{/user/center/myHouse}">我的房源</a>
+            <a th:class="${activeUri=='myRenter'?'active':''}" th:href="@{/user/center/myRenter}">我的租客</a>
+            <a th:class="${activeUri=='myRentOrder'?'active':''}" th:href="@{/user/center/myRenterOrder}">房屋出租记录</a>
+        </div>
+    </li>
+    <li class="item" id="business">
+        <a href="#business" class="btn2"><i class="fas fa-wallet"></i>租金管理</a>
+        <div class="subMenu">
+            <a th:class="${activeUri=='rentup'?'active':''}" th:href="@{/user/center/rentup}">交租记录</a>
+            <a th:class="${activeUri=='rentback'?'active':''}" th:href="@{/user/center/rentback}">收租记录</a>
+        </div>
+    </li>
+    <li class="item" id="other">
+        <a href="#other" class="btn2"><i class="fas fa-cog"></i>其他操作</a>
+        <div class="subMenu">
+            <a th:class="${activeUri=='return'?'active':''}" th:href="@{/user/center/return}">退租申请</a>
+            <a th:class="${activeUri=='report'?'active':''}" th:href="@{/user/center/report}">报修申请</a>
+        </div>
+    </li>
+    <li class="item" id="center">
+        <a href="#center" class="btn2"><i class="fas fa-user-circle"></i>个人中心</a>
+        <div class="subMenu">
+            <a th:class="${activeUri=='info'?'active':''}" th:href="@{/user/center/info}">个人信息</a>
+            <a th:class="${activeUri=='identity'?'active':''}" th:href="@{/user/center/identity}">实名认证</a>
+        </div>
+    </li>
+</ui>
+</body>
+<script type="text/javascript" th:src="@{/js/jquery-3.5.0.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+</html>

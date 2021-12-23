@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>实名认证</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/ihouse.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-3.5.0.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+    <!--图标库-->
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css">
+
+    <style type="text/css">
+        .finish-box {
+            width: 407px;
+            height: 234px;
+            border: 2px solid #ddd;
+            border-radius: 7px;
+            margin: 100px auto 0;
+
+        }
+
+        .box-title {
+            width: 100%;
+            height: 97px;
+            border-bottom: 1px solid #ddd;
+            font-size: 18px;
+            color: #222;
+            font-weight: 700;
+            line-height: 96px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        .box-content {
+            padding-top: 35px;
+            border-radius: 0 0 7px 7px;
+            width: 100%;
+            height: 136px;
+            background: #f9f9f9;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -ms-flex-pack: distribute;
+            justify-content: space-around;
+        }
+
+        .box-content p {
+            padding-left: 48px;
+        }
+
+        .attention {
+            font-size: 13px;
+            padding: 62px 0;
+            display: block;
+            color: #555;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body style="min-width: 1200px;">
+<div th:replace="commons/common::header"></div>
+
+<div class="clearfix">
+    <div class="float-left" style="background-color: #ef584a; min-height: 600px;">
+        <div th:replace="commons/common::sidebar(activeUri='rentup')"></div>
+    </div>
+
+    <div class="float-left">
+        <div style="width: 950px;">
+
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">个人中心</a></li>
+                <li class="breadcrumb-item active" aria-current="page">实名认证</li>
+            </ol>
+            <div style="padding: 0px 40px;">
+                <div th:if="${#ctx.session.user.rid}==1">
+                    <div class="identity">
+                        <div class="finish-box">
+                            <div class="box-title"><span style="margin: 0 auto;">您已通过了实名认证</span></div>
+                            <div class="box-content">
+                                <p>真实姓名： *三</p>
+                                <p>证件号码： 1***************15</p>
+                            </div>
+                        </div>
+                        <div class="attention"> 实名认证审核通过后，将不能修改认证信息。<br>
+                            如有特殊情况（如：改名、移民等导致原证件无效），请联系客服人员进行处理。
+                        </div>
+                    </div>
+                </div>
+                <div th:if="${#ctx.session.user.rid}==0">
+                    <form action="">
+                        <div class="clearfix">
+                            <div class="form-group row">
+                                <label class="col-form-label mr-2">真实姓名</label>
+                                <input class="form-control" type="text" style="width: 300px;">
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label mr-2">证件类型</label>
+                                <select class="form-control" style="width: 200px;">
+                                    <option value="">居民身份证</option>
+                                    <option value="">港澳台身份证</option>
+                                    <option value="">护照</option>
+                                </select></div>
+                            <div class="form-group row">
+                                <label class="col-form-label mr-2">证件号码</label>
+                                <input class="form-control" type="text" style="width: 300px;">
+                            </div>
+                            <input type="submit" class="btn btn-primary" value="提交">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+<!-- 底部页脚部分 -->
+<div class="footer">
+    <p class="text-center">
+        2018 &copy; 李富宝.
+    </p>
+</div>
+</body>
+
+
+</html>

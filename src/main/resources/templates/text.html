@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>yugi</title>
+  <meta charset="UTF-8" />
+  <style type="text/css">
+  </style>
+  <script type="text/javascript" src="../js/jquery-3.5.0.js"></script>
+  <script type="text/javascript">
+    var CRT = 3; // 如果大于等于3
+    jQuery(function ($) {
+      $("div.one li").filter("li:gt(" + (CRT - 1) + ")").hide().filter(":last").show().click(function () {
+        $(this).siblings("li:gt(" + (CRT - 1) + ")").toggle();
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div class="one">
+    <ul>
+      <li>我是链接1</li>
+      <li>我是链接2</li>
+      <li>我是链接3</li>
+      <!--如果大于等于3只显示e79fa5e98193e78988e69d8331333337383838到这里剩下的 4 和 5不显示-->
+      <li>我是链接4</li>
+      <li>我是链接5</li>
+      <li>查看更多链接</li>
+      <!--点这个显示 4 和 5 -->
+    </ul>
+  </div>
+</body>
+
+</html>
