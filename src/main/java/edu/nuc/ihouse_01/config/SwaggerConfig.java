@@ -30,7 +30,7 @@ public class SwaggerConfig {
                 .title("springboot接口文档test")
                 .description("接口文档，以及相关说明")
                 .version("1.0.0")
-                .contact(new Contact("lanqiao","http://www.lanqiao.org","15234512314@163.com"))
+                .contact(new Contact("dxq","http://www.dxq.org","dongxiaoqi3360@163.com"))
                 .build();
     }
 }
